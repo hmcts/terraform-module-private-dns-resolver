@@ -3,9 +3,18 @@ variable "env" {
   type        = string
 }
 
-variable "common_tags" {
-  description = "Common tag to be applied to resources."
-  type        = map(string)
+variable "name" {
+  description = "The name of the Private DNS Resolver"
+  type        = string
+}
+variable "inbound_ip_prefix" {
+  description = "The IP prefix for the inbound resolver."
+  type        = string
+}
+
+variable "outbound_ip_prefix" {
+  description = "The IP prefix for the outbound resolver."
+  type        = string
 }
 
 variable "product" {
@@ -13,11 +22,7 @@ variable "product" {
   type        = string
 }
 
-variable "project" {
-  description = "Project name - sds or cft."
-}
-
-variable "component" {
-  description = "https://hmcts.github.io/glossary/#component"
+variable "builtFrom" {
+  description = "The URL of the repository from which the module is built."
   type        = string
 }

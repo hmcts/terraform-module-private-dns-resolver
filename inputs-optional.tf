@@ -7,10 +7,10 @@ variable "existing_resource_group_name" {
 variable "location" {
   description = "Target Azure location to deploy the resource"
   type        = string
-  default     = "UK South"
+  default     = "uksouth"
 }
 
 variable "name" {
   default     = ""
-  description = "The default name will be product+component+env, you can override the product+component part by setting this"
+  description = "The name of the Private DNS Resolver"
 }

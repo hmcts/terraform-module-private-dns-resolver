@@ -1,18 +1,7 @@
 # terraform-module-template
 
 <!-- TODO fill in resource name in link to product documentation -->
-Terraform module for [Resource name](https://example.com).
-
-## Example
-
-<!-- todo update module name
-```hcl
-module "todo_resource_name" {
-  source = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
-  ...
-}
-
-```
+Terraform module for [Azure DNS Private Resolver](https://learn.microsoft.com/en-gb/azure/dns/dns-private-resolver-overview).
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
