@@ -8,12 +8,14 @@ Terraform module for [Azure DNS Private Resolver](https://learn.microsoft.com/en
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | 1.0.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.26.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
+| <a name="provider_azapi"></a> [azapi](#provider\_azapi) | 1.0.0 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.26.0 |
 
 ## Modules
@@ -26,14 +28,15 @@ Terraform module for [Azure DNS Private Resolver](https://learn.microsoft.com/en
 
 | Name | Type |
 |------|------|
-| [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
+| [azapi_resource.inbound](https://registry.terraform.io/providers/Azure/azapi/1.0.0/docs/resources/resource) | resource |
+| [azapi_resource.outbound](https://registry.terraform.io/providers/Azure/azapi/1.0.0/docs/resources/resource) | resource |
+| [azapi_resource.resolver](https://registry.terraform.io/providers/Azure/azapi/1.0.0/docs/resources/resource) | resource |
+| [azurerm_resource_group.new](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_subnet.inbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet.outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
-| [azurerm_virtual_network.resolver](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
-| [azurerm_key_vault.hub_azure_keyvault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
-| [azurerm_key_vault_secret.hub_subnet-inbound-resolver-prefix](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault_secret) | data source |
-| [azurerm_key_vault_secret.hub_subnet-outbound-resolver-prefix](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault_secret) | data source |
-| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
+| [azurerm_virtual_network.new](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
+| [azurerm_resource_group.existing](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
+| [azurerm_virtual_network.existing](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/virtual_network) | data source |
 
 ## Inputs
 
@@ -42,6 +45,8 @@ Terraform module for [Azure DNS Private Resolver](https://learn.microsoft.com/en
 | <a name="input_builtFrom"></a> [builtFrom](#input\_builtFrom) | The URL of the repository from which the module is built. | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Environment value. | `string` | n/a | yes |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | Name of existing resource group to deploy resources into | `string` | `null` | no |
+| <a name="input_existing_vnet_name"></a> [existing\_vnet\_name](#input\_existing\_vnet\_name) | Name of existing vnet | `string` | `null` | no |
+| <a name="input_existing_vnet_resource_group"></a> [existing\_vnet\_resource\_group](#input\_existing\_vnet\_resource\_group) | Name of existing resource group containing the vnet | `string` | `null` | no |
 | <a name="input_inbound_ip_prefix"></a> [inbound\_ip\_prefix](#input\_inbound\_ip\_prefix) | The IP prefix for the inbound resolver. | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | Target Azure location to deploy the resource | `string` | `"uksouth"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the Private DNS Resolver | `string` | n/a | yes |
