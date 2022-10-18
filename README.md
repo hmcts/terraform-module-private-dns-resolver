@@ -57,8 +57,7 @@ Terraform module for [Azure DNS Private Resolver](https://learn.microsoft.com/en
 
 | Name | Description |
 |------|-------------|
-| <a name="output_resource_group_location"></a> [resource\_group\_location](#output\_resource\_group\_location) | n/a |
-| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | n/a |
+| <a name="output_resolver_id"></a> [resolver\_id](#output\_resolver\_id) | n/a |
 <!-- END_TF_DOCS -->
 
 ## Contributing
