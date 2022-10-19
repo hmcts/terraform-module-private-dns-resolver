@@ -1,6 +1,6 @@
 resource "azapi_resource" "resolver" {
   type      = "Microsoft.Network/dnsResolvers@2022-07-01"
-  name      = "${var.name}-resolver-${var.env}"
+  name      = "${var.name}-${var.env}"
   parent_id = local.resource_group_id
   location  = local.location
   body = jsonencode({
