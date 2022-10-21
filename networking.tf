@@ -20,6 +20,12 @@ resource "azurerm_subnet" "inbound" {
   resource_group_name  = local.vnet_resource_group
   virtual_network_name = local.vnet_name
   address_prefixes     = [var.inbound_ip_prefix]
+
+  lifecycle {
+    ignore_changes = [
+      delegation
+    ]
+  }
 }
 
 resource "azurerm_subnet" "outbound" {
@@ -27,4 +33,10 @@ resource "azurerm_subnet" "outbound" {
   resource_group_name  = local.vnet_resource_group
   virtual_network_name = local.vnet_name
   address_prefixes     = [var.outbound_ip_prefix]
+
+  lifecycle {
+    ignore_changes = [
+      delegation
+    ]
+  }
 }
