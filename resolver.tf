@@ -1,50 +1,27 @@
-resource "azapi_resource" "resolver" {
-  type      = "Microsoft.Network/dnsResolvers@2022-07-01"
-  name      = "${var.name}-${var.env}"
-  parent_id = local.resource_group_id
-  location  = local.location
-  body = jsonencode({
-    properties = {
-      virtualNetwork = {
-        id = local.vnet_id
-      }
-    }
-  })
-  response_export_values = ["properties.virtualnetwork.id"]
+resource "azurerm_private_dns_resolver" "resolver" {
+  name                = "${var.name}-${var.env}"
+  resource_group_name = local.resource_group_id
+  location            = local.location
+  virtual_network_id  = local.vnet_id
+  tags                = module.ctags.common_tags
 }
 
-resource "azapi_resource" "inbound" {
-  type      = "Microsoft.Network/dnsResolvers/inboundEndpoints@2022-07-01"
-  name      = "inbound-endpoint-${var.env}"
-  parent_id = azapi_resource.resolver.id
-  location  = azapi_resource.resolver.location
-  body = jsonencode({
-    properties = {
-      ipConfigurations = [{ subnet = {
-        id = azurerm_subnet.inbound.id
-      } }]
-    }
-  })
-
-  depends_on = [
-    azapi_resource.resolver
-  ]
+resource "azurerm_private_dns_resolver_inbound_endpoint" "inbound" {
+  name                    = "inbound-endpoint-${var.env}"
+  private_dns_resolver_id = azurerm_private_dns_resolver.resolver.id
+  location                = local.location
+  ip_configurations {
+    private_ip_allocation_method = "Dynamic"
+    subnet_id                    = azurerm_subnet.inbound.id
+  }
+  tags = module.ctags.common_tags
 }
 
-resource "azapi_resource" "outbound" {
-  type      = "Microsoft.Network/dnsResolvers/outboundEndpoints@2022-07-01"
-  name      = "outbound-endpoint-${var.env}"
-  parent_id = azapi_resource.resolver.id
-  location  = azapi_resource.resolver.location
-  body = jsonencode({
-    properties = {
-      subnet = {
-        id = azurerm_subnet.outbound.id
-      }
-    }
-  })
-
-  depends_on = [
-    azapi_resource.resolver
-  ]
+resource "azurerm_private_dns_resolver_outbound_endpoint" "outbound" {
+  name                    = "outbound-endpoint-${var.env}"
+  private_dns_resolver_id = azurerm_private_dns_resolver.resolver.id
+  location                = local.location
+  subnet_id               = azurerm_subnet.outbound.id
+  tags                    = module.ctags.common_tags
 }
+

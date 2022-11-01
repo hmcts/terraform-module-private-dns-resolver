@@ -1,3 +1,3 @@
 output "resolver_id" {
-  value = azapi_resource.resolver.id
+  value = azurerm_private_dns_resolver.resolver.id
 }
