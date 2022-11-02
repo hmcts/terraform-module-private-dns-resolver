@@ -1,6 +1,6 @@
 resource "azurerm_private_dns_resolver" "resolver" {
   name                = "${var.name}-${var.env}"
-  resource_group_name = local.resource_group_id
+  resource_group_name = local.resource_group
   location            = local.location
   virtual_network_id  = local.vnet_id
   tags                = module.ctags.common_tags
