@@ -40,3 +40,19 @@ resource "azurerm_subnet" "outbound" {
     ]
   }
 }
+
+# Add vNet peering between new DNS vNET and hub vNET
+
+resource "azurerm_virtual_network_peering" "dnsvnet" {
+  name                      = "peerdnsvnetto-${var.env}hub"
+  resource_group_name       = local.vnet_resource_group
+  virtual_network_name      = local.vnet_name
+  remote_virtual_network_id = var.hub_vnet_id
+}
+
+resource "azurerm_virtual_network_peering" "hubvnet" {
+  name                      = "peer${var.env}hubvnetto-dnsvnet"
+  resource_group_name       = var.hub_resource_group
+  virtual_network_name      = var.existing_vnet_name
+  remote_virtual_network_id = azurerm_virtual_network.new.id
+}
