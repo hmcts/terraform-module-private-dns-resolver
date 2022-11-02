@@ -14,3 +14,5 @@ locals {
   vnet_name           = var.existing_vnet_name == null ? azurerm_virtual_network.new[0].name : var.existing_vnet_name
   vnet_id             = var.existing_vnet_name == null ? azurerm_virtual_network.new[0].id : data.azurerm_virtual_network.existing[0].id
 }
+
+  
