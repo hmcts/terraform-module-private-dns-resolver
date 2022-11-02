@@ -54,5 +54,5 @@ resource "azurerm_virtual_network_peering" "hubvnet" {
   name                      = "peer${var.env}hubvnetto-dnsvnet"
   resource_group_name       = var.hub_resource_group
   virtual_network_name      = var.existing_vnet_name
-  remote_virtual_network_id = azurerm_virtual_network.new.[0].id
+  remote_virtual_network_id = azurerm_virtual_network.new[0].id
 }
