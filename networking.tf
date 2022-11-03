@@ -41,18 +41,40 @@ resource "azurerm_subnet" "outbound" {
   }
 }
 
-# Add vNet peering between new DNS vNET and hub vNET
-
+# Add vNet peering between new DNS vNET and hub vNET if new vNet deployed
 resource "azurerm_virtual_network_peering" "dnsvnet" {
-  name                      = "peerdnsvnetto-${var.env}hub"
+  count = var.hub_vnet_name == null ? 1 : 0
+
+  name                      = "peer-dnsvnet-to-${var.env}-hub"
   resource_group_name       = local.vnet_resource_group
   virtual_network_name      = local.vnet_name
   remote_virtual_network_id = var.hub_vnet_id
 }
 
 resource "azurerm_virtual_network_peering" "hubvnet" {
-  name                      = "peer${var.env}hubvnetto-dnsvnet"
+  count = var.hub_vnet_name == null ? 1 : 0
+
+  name                      = "peer-${var.env}-hubvnet-to-dnsvnet"
   resource_group_name       = var.hub_resource_group
   virtual_network_name      = var.hub_vnet_name
   remote_virtual_network_id = azurerm_virtual_network.new[0].id
+}
+
+# Add IP routing if new vNet deployed
+resource "azurerm_route_table" "dnsrt" {
+  count = var.hub_vnet_name == null ? 1 : 0
+
+  name                = "${var.name}-${var.env}-rt"
+  location            = local.location
+  resource_group_name = local.vnet_resource_group
+}
+
+resource "azurerm_route" "example" {
+  count = var.hub_vnet_name == null ? 1 : 0
+
+  name                = "bhneedstounderstandroutesneeded"
+  resource_group_name = local.vnet_resource_group
+  route_table_name    = azurerm_route_table.dnsrt.name
+  address_prefix      = "10.1.0.0/16"
+  next_hop_type       = "VnetLocal"
 }
