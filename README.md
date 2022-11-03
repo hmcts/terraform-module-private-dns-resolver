@@ -3,6 +3,17 @@
 <!-- TODO fill in resource name in link to product documentation -->
 Terraform module for [Azure DNS Private Resolver](https://learn.microsoft.com/en-gb/azure/dns/dns-private-resolver-overview).
 
+## Conditional Creations 
+### Resource Group 
+Use an existing resource by passing it to the module with the variable existing_resource_group_name or a new resource group will be created by the module.
+
+### vNet
+Use an existing vNet by passing it to the module with the variable existing_vnet_name or a new resource group will be created by the module.
+
+### New vNet Peering and IP Routing
+By passing the name of the hub vNet as hub_vnet_name, the module will create a peering between the vNet created by this module and the hub vNet.  It will then create an appropriate routing table.
+
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
