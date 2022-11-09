@@ -46,3 +46,16 @@ variable "palo_alto_lb_ip" {
   description = "The IP address of the Palo Alto load balancer"
   type        = string
 }
+
+variable "rules" {
+  description = "The rules to be applied to the resolver."
+  type = list(object({
+    name        = string
+    domain_name = string
+    target_dns_servers = list(object({
+      ip_address = string
+      port       = number
+    }))
+    enabled = bool
+  }))
+}

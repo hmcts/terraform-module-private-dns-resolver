@@ -19,14 +19,13 @@ By passing the name of the hub vNet as hub_vnet_name, the module will create a p
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.29.1 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.30.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.29.1 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.30.0 |
 
 ## Modules
 
@@ -39,6 +38,8 @@ By passing the name of the hub vNet as hub_vnet_name, the module will create a p
 | Name | Type |
 |------|------|
 | [azurerm_private_dns_resolver.resolver](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver) | resource |
+| [azurerm_private_dns_resolver_dns_forwarding_ruleset.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_dns_forwarding_ruleset) | resource |
+| [azurerm_private_dns_resolver_forwarding_rule.name](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_forwarding_rule) | resource |
 | [azurerm_private_dns_resolver_inbound_endpoint.inbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_inbound_endpoint) | resource |
 | [azurerm_private_dns_resolver_outbound_endpoint.outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_outbound_endpoint) | resource |
 | [azurerm_resource_group.new](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
@@ -74,6 +75,7 @@ By passing the name of the hub vNet as hub_vnet_name, the module will create a p
 | <a name="input_outbound_ip_prefix"></a> [outbound\_ip\_prefix](#input\_outbound\_ip\_prefix) | The IP prefix for the outbound resolver. | `string` | n/a | yes |
 | <a name="input_palo_alto_lb_ip"></a> [palo\_alto\_lb\_ip](#input\_palo\_alto\_lb\_ip) | The IP address of the Palo Alto load balancer | `string` | n/a | yes |
 | <a name="input_product"></a> [product](#input\_product) | https://hmcts.github.io/glossary/#product | `string` | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | The rules to be applied to the resolver. | <pre>list(object({<br>    name        = string<br>    domain_name = string<br>    target_dns_servers = list(object({<br>      ip_address = string<br>      port       = number<br>    }))<br>    enabled = bool<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 
