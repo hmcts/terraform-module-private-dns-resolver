@@ -8,14 +8,14 @@ resource "azurerm_private_dns_resolver_dns_forwarding_ruleset" "this" {
 
 resource "azurerm_private_dns_resolver_virtual_network_link" "this" {
   for_each                  = var.dns_zone_vnets
-  name                      = "${each.value.name}-link"
+  name                      = "${each.key}-link"
   dns_forwarding_ruleset_id = azurerm_private_dns_resolver_dns_forwarding_ruleset.this.id
-  virtual_network_id        = each.value.id
+  virtual_network_id        = each.value
 }
 
 resource "azurerm_private_dns_resolver_forwarding_rule" "name" {
   for_each                  = var.rules
-  name                      = each.value.name
+  name                      = each.key
   dns_forwarding_ruleset_id = azurerm_private_dns_resolver_dns_forwarding_ruleset.this.id
   domain_name               = each.value.domain_name
   enabled                   = each.value.enabled
