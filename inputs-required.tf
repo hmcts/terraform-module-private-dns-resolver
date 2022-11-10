@@ -53,8 +53,9 @@ variable "rules" {
     name        = string
     domain_name = string
     target_dns_servers = list(object({
-      ip_address = string
-      port       = number
+      use_resolver_inbound_address = bool
+      ip_address                   = string
+      port                         = number
     }))
     enabled = bool
   }))

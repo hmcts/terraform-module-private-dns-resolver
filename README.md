@@ -77,7 +77,7 @@ By passing the name of the hub vNet as hub_vnet_name, the module will create a p
 | <a name="input_outbound_ip_prefix"></a> [outbound\_ip\_prefix](#input\_outbound\_ip\_prefix) | The IP prefix for the outbound resolver. | `string` | n/a | yes |
 | <a name="input_palo_alto_lb_ip"></a> [palo\_alto\_lb\_ip](#input\_palo\_alto\_lb\_ip) | The IP address of the Palo Alto load balancer | `string` | n/a | yes |
 | <a name="input_product"></a> [product](#input\_product) | https://hmcts.github.io/glossary/#product | `string` | n/a | yes |
-| <a name="input_rules"></a> [rules](#input\_rules) | The rules to be applied to the resolver. | <pre>list(object({<br>    name        = string<br>    domain_name = string<br>    target_dns_servers = list(object({<br>      ip_address = string<br>      port       = number<br>    }))<br>    enabled = bool<br>  }))</pre> | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | The rules to be applied to the resolver. | <pre>list(object({<br>    name        = string<br>    domain_name = string<br>    target_dns_servers = list(object({<br>      use_resolver_inbound_address = bool<br>      ip_address                   = string<br>      port                         = number<br>    }))<br>    enabled = bool<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 

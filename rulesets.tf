@@ -23,7 +23,7 @@ resource "azurerm_private_dns_resolver_forwarding_rule" "name" {
   dynamic "target_dns_servers" {
     for_each = each.value.target_dns_servers
     content {
-      ip_address = target_dns_servers.value.ip_address
+      ip_address = target_dns_servers.value.use_resolver_inbound_address ? azurerm_private_dns_resolver_inbound_endpoint.inbound.ip_configurations[0].private_ip_address : target_dns_servers.value.ip_address
       port       = target_dns_servers.value.port
     }
   }
