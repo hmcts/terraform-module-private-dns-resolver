@@ -2,7 +2,7 @@ resource "azurerm_private_dns_resolver_dns_forwarding_ruleset" "this" {
   name                                       = "${var.name}-${var.env}-ruleset"
   resource_group_name                        = local.resource_group
   location                                   = local.location
-  private_dns_resolver_outbound_endpoint_ids = [azurerm_private_dns_resolver.resolver.id]
+  private_dns_resolver_outbound_endpoint_ids = [azurerm_private_dns_resolver_outbound_endpoint.outbound.id]
   tags                                       = module.ctags.common_tags
 }
 
