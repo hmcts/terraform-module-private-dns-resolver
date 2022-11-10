@@ -6,6 +6,13 @@ resource "azurerm_private_dns_resolver_dns_forwarding_ruleset" "this" {
   tags                                       = module.ctags.common_tags
 }
 
+resource "azurerm_private_dns_resolver_virtual_network_link" "this" {
+  for_each                  = var.dns_zone_vnets
+  name                      = "${each.value.name}-link"
+  dns_forwarding_ruleset_id = azurerm_private_dns_resolver_dns_forwarding_ruleset.this.id
+  virtual_network_id        = each.value.id
+}
+
 resource "azurerm_private_dns_resolver_forwarding_rule" "name" {
   for_each                  = var.rules
   name                      = each.value.name

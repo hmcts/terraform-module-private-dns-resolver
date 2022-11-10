@@ -42,6 +42,7 @@ By passing the name of the hub vNet as hub_vnet_name, the module will create a p
 | [azurerm_private_dns_resolver_forwarding_rule.name](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_forwarding_rule) | resource |
 | [azurerm_private_dns_resolver_inbound_endpoint.inbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_inbound_endpoint) | resource |
 | [azurerm_private_dns_resolver_outbound_endpoint.outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_outbound_endpoint) | resource |
+| [azurerm_private_dns_resolver_virtual_network_link.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_resolver_virtual_network_link) | resource |
 | [azurerm_resource_group.new](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_route.PrivateClassA](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route) | resource |
 | [azurerm_route.PrivateClassB](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route) | resource |
@@ -62,6 +63,7 @@ By passing the name of the hub vNet as hub_vnet_name, the module will create a p
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_builtFrom"></a> [builtFrom](#input\_builtFrom) | The URL of the repository from which the module is built. | `string` | n/a | yes |
+| <a name="input_dns_zone_vnets"></a> [dns\_zone\_vnets](#input\_dns\_zone\_vnets) | The IDs and Names of the VNets to link to the private DNS Resolver. These VNets should be linked to private dns zones. | <pre>list(object({<br>    name = string<br>    id   = string<br>  }))</pre> | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Environment value. | `string` | n/a | yes |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | Name of existing resource group to deploy resources into | `string` | `null` | no |
 | <a name="input_existing_vnet_name"></a> [existing\_vnet\_name](#input\_existing\_vnet\_name) | Name of existing vnet | `string` | `null` | no |

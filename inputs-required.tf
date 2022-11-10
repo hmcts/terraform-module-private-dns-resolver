@@ -59,3 +59,11 @@ variable "rules" {
     enabled = bool
   }))
 }
+
+variable "dns_zone_vnets" {
+  description = "The IDs and Names of the VNets to link to the private DNS Resolver. These VNets should be linked to private dns zones."
+  type = list(object({
+    name = string
+    id   = string
+  }))
+}
