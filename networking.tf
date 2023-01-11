@@ -49,6 +49,7 @@ resource "azurerm_virtual_network_peering" "dnsvnet" {
   resource_group_name       = local.vnet_resource_group
   virtual_network_name      = local.vnet_name
   remote_virtual_network_id = var.hub_vnet_id
+  allow_forwarded_traffic   = true
 }
 
 resource "azurerm_virtual_network_peering" "hubvnet" {
@@ -58,6 +59,7 @@ resource "azurerm_virtual_network_peering" "hubvnet" {
   resource_group_name       = var.hub_resource_group
   virtual_network_name      = var.hub_vnet_name
   remote_virtual_network_id = azurerm_virtual_network.new[0].id
+  allow_forwarded_traffic   = true
 }
 
 resource "azurerm_route_table" "dnsrt" {
